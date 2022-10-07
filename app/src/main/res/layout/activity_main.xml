@@ -6,13 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <EditText
+        android:id="@+id/edtCatNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:text="3"
+        android:hint="How many cats you want to load?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btnLoadCats"/>
+
     <Button
         android:id="@+id/btnLoadCats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Load cats"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edtCatNumber"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
@@ -29,4 +41,5 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

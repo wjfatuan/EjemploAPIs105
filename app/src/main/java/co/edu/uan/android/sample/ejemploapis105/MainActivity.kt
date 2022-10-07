@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.btnLoadCats.setOnClickListener {
-            loader.loadCats(3)
+            loader.loadCats(binding.edtCatNumber.text.toString().toInt())
         }
     }
     fun addCatImage(cat: Cat) {
