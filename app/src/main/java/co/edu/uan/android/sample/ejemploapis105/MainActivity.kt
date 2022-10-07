@@ -7,6 +7,7 @@ import android.widget.ImageView
 import co.edu.uan.android.sample.ejemploapis105.databinding.ActivityMainBinding
 import co.edu.uan.android.sample.ejemploapis105.models.Cat
 import co.edu.uan.android.sample.ejemploapis105.models.IonCatLoader
+import co.edu.uan.android.sample.ejemploapis105.models.RetrofitCatLoader
 import com.koushikdutta.async.future.FutureCallback
 import com.koushikdutta.ion.Ion
 import com.squareup.picasso.Picasso
@@ -18,15 +19,15 @@ import java.util.concurrent.Future
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    lateinit var loader: IonCatLoader
+    lateinit var loader: RetrofitCatLoader
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(this.layoutInflater)
-        loader = IonCatLoader(this)
+        loader = RetrofitCatLoader(this)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.btnLoadCats.setOnClickListener {
-            loader.loadCats()
+            loader.loadCats(3)
         }
     }
     fun addCatImage(cat: Cat) {
