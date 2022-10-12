@@ -8,15 +8,17 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitCatLoader(val context: MainActivity) {
+class RetrofitCatLoader(val context: MainActivity, val storage: SQLiteStorage) {
 
     fun loadCats(num: Int) {
         var catsApi = CatApi.getInstance()
         var search: Call<Array<Cat>> = catsApi.searchCats(num)
         search.enqueue(object: Callback<Array<Cat>> {
             override fun onResponse(call: Call<Array<Cat>>, response: Response<Array<Cat>>) {
-                for(cat in response.body()!!.asList())
+                for(cat in response.body()!!.asList()) {
+                    storage.addCat(cat)
                     context.addCatImage(cat)
+                }
             }
             override fun onFailure(call: Call<Array<Cat>>, t: Throwable) {
                 Log.e("JSONDATA", t.message, t)

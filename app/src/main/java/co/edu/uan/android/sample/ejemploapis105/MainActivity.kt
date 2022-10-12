@@ -8,6 +8,7 @@ import co.edu.uan.android.sample.ejemploapis105.databinding.ActivityMainBinding
 import co.edu.uan.android.sample.ejemploapis105.models.Cat
 import co.edu.uan.android.sample.ejemploapis105.models.IonCatLoader
 import co.edu.uan.android.sample.ejemploapis105.models.RetrofitCatLoader
+import co.edu.uan.android.sample.ejemploapis105.models.SQLiteStorage
 import com.koushikdutta.async.future.FutureCallback
 import com.koushikdutta.ion.Ion
 import com.squareup.picasso.Picasso
@@ -20,15 +21,18 @@ import java.util.concurrent.Future
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var loader: RetrofitCatLoader
+    lateinit var storage: SQLiteStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(this.layoutInflater)
-        loader = RetrofitCatLoader(this)
+        storage = SQLiteStorage(this)
+        loader = RetrofitCatLoader(this,storage)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.btnLoadCats.setOnClickListener {
             loader.loadCats(binding.edtCatNumber.text.toString().toInt())
         }
+        storage.createDatabase()
     }
     fun addCatImage(cat: Cat) {
         val container = binding.catsContainer
