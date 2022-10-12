@@ -22,12 +22,28 @@ class SQLiteStorage(val activity: MainActivity) {
     }
 
     fun addCat(cat: Cat) {
-        db.execSQL("INSERT INTO cats(uid, url, width, height) VALUES (" +
-                "'${cat.id}'," +
-                "'${cat.url}'," +
-                "${cat.width}," +
-                "${cat.height}" +
-                ")")
+        val values = ContentValues()
+        values.put("uid", cat.id)
+        values.put("url", cat.url)
+        values.put("width", cat.width)
+        values.put("height", cat.height)
+        db.insert("cats", null, values)
+    }
 
+    fun loadCats(): Array<Cat> {
+        val cats = mutableListOf<Cat>()
+        val cursor = db.rawQuery("SELECT * FROM cats",null)
+        with(cursor) {
+            while(moveToNext()) {
+                val uid = getString(getColumnIndexOrThrow("uid"))
+                val url = getString(getColumnIndexOrThrow("url"))
+                val width = getInt(getColumnIndexOrThrow("width"))
+                val height = getInt(getColumnIndexOrThrow("height"))
+                val cat = Cat(uid, url, width, height)
+                cats.add(cat)
+                activity.addCatImage(cat)
+            }
+        }
+        return cats.toTypedArray()
     }
 }

@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             loader.loadCats(binding.edtCatNumber.text.toString().toInt())
         }
         storage.createDatabase()
+        storage.loadCats()
     }
     fun addCatImage(cat: Cat) {
         val container = binding.catsContainer
