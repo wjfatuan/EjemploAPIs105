@@ -3,7 +3,7 @@ package co.edu.uan.android.sample.ejemploapis105.models
 import android.content.ContentValues
 import android.content.Context.MODE_PRIVATE
 import android.database.sqlite.SQLiteDatabase
-import co.edu.uan.android.sample.ejemploapis105.MainActivity
+import co.edu.uan.android.sample.ejemploapis105.views.MainActivity
 
 class SQLiteStorage(val activity: MainActivity) {
 

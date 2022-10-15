@@ -1,5 +1,6 @@
-package co.edu.uan.android.sample.ejemploapis105.models
+package co.edu.uan.android.sample.ejemploapis105.models.apis
 
+import co.edu.uan.android.sample.ejemploapis105.models.Cat
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

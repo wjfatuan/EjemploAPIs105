@@ -1,14 +1,13 @@
 package co.edu.uan.android.sample.ejemploapis105.models
 
 import android.util.Log
-import co.edu.uan.android.sample.ejemploapis105.MainActivity
+import co.edu.uan.android.sample.ejemploapis105.models.apis.CatApi
+import co.edu.uan.android.sample.ejemploapis105.views.MainActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitCatLoader(val context: MainActivity, val storage: SQLiteStorage) {
+class RetrofitCatLoader(val context: MainActivity, val storage: RoomStorage) {
 
     fun loadCats(num: Int) {
         var catsApi = CatApi.getInstance()

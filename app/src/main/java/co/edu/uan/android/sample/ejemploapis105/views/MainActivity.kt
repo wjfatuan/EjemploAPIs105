@@ -1,31 +1,20 @@
-package co.edu.uan.android.sample.ejemploapis105
+package co.edu.uan.android.sample.ejemploapis105.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import co.edu.uan.android.sample.ejemploapis105.databinding.ActivityMainBinding
-import co.edu.uan.android.sample.ejemploapis105.models.Cat
-import co.edu.uan.android.sample.ejemploapis105.models.IonCatLoader
-import co.edu.uan.android.sample.ejemploapis105.models.RetrofitCatLoader
-import co.edu.uan.android.sample.ejemploapis105.models.SQLiteStorage
-import com.koushikdutta.async.future.FutureCallback
-import com.koushikdutta.ion.Ion
+import co.edu.uan.android.sample.ejemploapis105.models.*
 import com.squareup.picasso.Picasso
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
-import java.lang.Exception
-import java.util.concurrent.Future
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var loader: RetrofitCatLoader
-    lateinit var storage: SQLiteStorage
+    lateinit var storage: RoomStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(this.layoutInflater)
-        storage = SQLiteStorage(this)
+        storage = RoomStorage(this)
         loader = RetrofitCatLoader(this,storage)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
